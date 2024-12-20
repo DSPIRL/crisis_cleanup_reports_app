@@ -1,0 +1,6 @@
+.venv
+.idea
+examples
+__pycache__
+*.csv
+qodana.yaml
