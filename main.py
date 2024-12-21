@@ -169,7 +169,7 @@ class CrisisCleanupReports(QDialog):
             elif selected_text == "":
 
                 self.info_layout= QHBoxLayout()
-                self.help_text = QLabel("Select a job type from the drop-down list above.")
+                self.help_text = QLabel("Select a job type from the drop-down list in the top left box.")
 
                 self.top_right_layout.addStretch(1)
                 self.top_right_layout.addLayout(self.info_layout)
