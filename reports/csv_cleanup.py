@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime as c_time
 
 
-def normalize_disaster_data(input_file, output_file):
+def generate_csv_cleanup(input_file):
     """
     Reads disaster relief data and splits rows with multiple work types into separate rows.
     Each output row will have exactly one work type with its associated status and claimer.
@@ -36,37 +36,27 @@ def normalize_disaster_data(input_file, output_file):
             normalized_rows.append(new_row)
 
     # Create a new DataFrame from the normalized rows
-    normalized_df = pd.DataFrame(normalized_rows)
+    result = pd.DataFrame(normalized_rows)
 
     # Sort by Case Number and Work Types for organization
-    normalized_df = normalized_df.sort_values(['Case Number', 'Work Types'])
+    result = result.sort_values(['Case Number', 'Work Types'])
 
-    # Save to CSV
-    normalized_df.to_csv(output_file, index=False)
+    ### Save to CSV ###
+    # Get current time in DDMMYYHHMMSS format
+    current_time = c_time.now().strftime("%d%m%y%H%M%S")
+    # Setup output file
+    output_file = f"csv_cleanup_{current_time}.csv"
+    result.to_csv(output_file, index=False)
 
     # Print summary statistics
     # print(f"\nNormalization complete. Summary:")
     # print(f"Original rows: {len(df)}")
-    # print(f"Normalized rows: {len(normalized_df)}")
+    # print(f"Normalized rows: {len(result)}")
     # print("\nWork Types distribution:")
-    # print(normalized_df['Work Types'].value_counts())
+    # print(result['Work Types'].value_counts())
     # print("\nStatus distribution:")
-    # print(normalized_df['Statuses'].value_counts())
+    # print(result['Statuses'].value_counts())
     # print("\nClaimer distribution:")
-    # print(normalized_df['Claimed By'].value_counts())
+    # print(result['Claimed By'].value_counts())
 
-    return normalized_df
-
-
-# DOING THE THING
-if __name__ == "__main__":
-    # Setup input file
-    input_file = "input_data.csv"
-
-    # Get current time in DDMMYYHHMMSS format
-    current_time = c_time.now()
-    formatted_time = current_time.strftime("%m%d%y%H%M%S")
-
-    # Setup output file
-    output_file = f"output_data_{formatted_time}.csv"
-    normalized_df = normalize_disaster_data(input_file, output_file)
+    # return result
