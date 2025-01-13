@@ -36,7 +36,7 @@ class CrisisCleanupReports(QDialog):
         self.setLayout(main_layout)
 
         self.setWindowTitle("Crisis Cleanup Reports")
-        self.setFixedSize(600, 400)
+        self.setFixedSize(700, 500)
 
         # Connect the drop-down list signal to update the right view
         self.top_left_group_box.combo_box_report_type.currentTextChanged.connect(
@@ -106,9 +106,9 @@ class CrisisCleanupReports(QDialog):
                 self.file_info_layout = QHBoxLayout()
                 self.file_display_label = QLabel("")  # For displaying only one file
                 self.remove_file_button = QPushButton("Remove File")
-                self.csv_help_text = QLabel("Select a CSV file exported from the Crisis Cleanup app. Running this\n"
-                                            "job will export a CSV in the current directory that this program is\n"
-                                            "located in.")
+                self.csv_help_text = QLabel("Select a CSV file exported from the Crisis Cleanup app.\n"
+                                            "Running this job will export a CSV in the current directory\n"
+                                            "that this program is located in.")
                 self.remove_file_button.clicked.connect(lambda: self.remove_file("single"))
                 self.remove_file_button.setEnabled(False)  # Initially disabled
 
