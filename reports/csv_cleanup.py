@@ -42,10 +42,10 @@ def generate_csv_cleanup(input_file):
     result = result.sort_values(['Case Number', 'Work Types'])
 
     ### Save to CSV ###
-    # Get current time in DDMMYYHHMMSS format
-    current_time = c_time.now().strftime("%d%m%y%H%M%S")
+    # Get current time in DD-MM-YY- HHMMSS format
+    current_time = c_time.now().strftime("%m-%d-%y %H%M%S")
     # Setup output file
-    output_file = f"csv_cleanup_{current_time}.csv"
+    output_file = f"csv_cleanup {current_time}.csv"
     result.to_csv(output_file, index=False)
 
     # Print summary statistics

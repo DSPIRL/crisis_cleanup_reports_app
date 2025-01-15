@@ -84,10 +84,10 @@ def generate_weekly_report(old_file, new_file):
     changed_to_closed['Change Type'] = 'Changed to Closed'
 
     ### 4. Export Results to Separate CSV Files ###
-    # Generate unique filenames with timestamps
-    current_time = c_time.now().strftime("%d%m%y%H%M%S")
-    new_cases_file = f"new_cases_report_{current_time}.csv"
-    changed_statuses_file = f"closed_cases_report_{current_time}.csv"
+    # Get current time in DD-MM-YY- HHMMSS format
+    current_time = c_time.now().strftime("%m-%d-%y %H%M%S")
+    new_cases_file = f"new_cases_report {current_time}.csv"
+    changed_statuses_file = f"closed_cases_report {current_time}.csv"
 
     # Remove unique_key from both DataFrames before saving
     if 'unique_key' in new_cases.columns:
